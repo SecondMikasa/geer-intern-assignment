@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button"
 
 import { formatCurrency, formatDate } from "@/lib/functions"
 import { ProductCardProps } from "@/lib/types"
+import Link from "next/link"
 
 export default function ProductCard({ product, onDelete }: ProductCardProps) {
    const [isHovered, setIsHovered] = useState(false);
@@ -65,7 +66,8 @@ export default function ProductCard({ product, onDelete }: ProductCardProps) {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-md">
+      <Link href={`/products/${id}`}>
+        <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-md">
         <div className="relative overflow-hidden">
           <AspectRatio ratio={4 / 3}>
             <Image
@@ -106,6 +108,7 @@ export default function ProductCard({ product, onDelete }: ProductCardProps) {
           </Button>
         </CardFooter>
       </Card>
+      </Link>
     </motion.div>
   )
 }
